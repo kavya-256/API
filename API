@@ -1,0 +1,45 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Endpoint 1: GET /
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+// Endpoint 2: GET /api/users
+app.get('/api/users', (req, res) => {
+  // Simulated user data
+  const users = [
+    { id: 1, name: 'John Doe' },
+    { id: 2, name: 'Jane Smith' },
+  ];
+
+  res.json(users);
+});
+
+// Endpoint 3: POST /api/posts
+app.post('/api/posts', (req, res) => {
+  // Simulated data sent in the request body
+  const { title, content } = req.body;
+
+  // Perform some action with the data
+  // ...
+
+  res.json({ success: true, message: 'Post created successfully' });
+});
+
+// Endpoint 4: DELETE /api/users/:id
+app.delete('/api/users/:id', (req, res) => {
+  const userId = req.params.id;
+
+  // Delete user with the given ID from the database
+  // ...
+
+  res.json({ success: true, message: 'User deleted successfully' });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
